@@ -9,17 +9,17 @@ namespace Aviaseils
         {
             City[] cities = new City[] {
 
-                    new City  (1, "Áåðëèí", 399, 175, 1.13),
-                    new City  (2, "Ïðàãà", 300, 175),
-                    new City  (3, "Ïàðèæ", 350, 220),
-                    new City  (4, "Ðèãà", 250, 170),
-                    new City  (5, "Ëîíäîí", 390, 270),
-                    new City  (6, "Âàòèêàí", 500, 350),
-                    new City  (7, "Ïàëåðìî", 230, 150),
-                    new City  (8, "Âàðøàâà", 300, 190),
-                    new City  (9, "Êèøèíåâ", 215, 110),
-                    new City  (10, "Ìàäðèä", 260, 190),
-                    new City  (11, "Áóäàïåøò", 399, 175)
+                    new City  (1, "Берлин", 399, 175, 1.13),
+                    new City  (2, "Прага", 300, 175),
+                    new City  (3, "Париж", 350, 220),
+                    new City  (4, "Рига", 250, 170),
+                    new City  (5, "Лондон", 390, 270),
+                    new City  (6, "Ватикан", 500, 350),
+                    new City  (7, "Палермо", 230, 150),
+                    new City  (8, "Варшава", 300, 190),
+                    new City  (9, "Кишинев", 215, 110),
+                    new City  (10, "Мадрид", 260, 190),
+                    new City  (11, "Будапешт", 399, 175)
                 };
             return cities;
         }
@@ -40,50 +40,50 @@ namespace Aviaseils
                 }
             }
 
-            if (secondCity == "Áåðëèí")
+            if (secondCity == "Берлин")
             {
-                price += cities[1].price * cities[1].nalog - cities[1].price;
-                price += cities[1].price * 1.04 - cities[1].price;
+                price += cities[0].price * cities[0].nalog - cities[0].price;
+                price += cities[0].price * 1.04 - cities[0].price;
             }
 
-            if (secondCity == "Ïðàãà")
+            if (secondCity == "Прага")
+                price += cities[1].price * 1.04 - cities[1].price;
+
+            if (secondCity == "Париж")
                 price += cities[2].price * 1.04 - cities[2].price;
 
-            if (secondCity == "Ïàðèæ")
+            if (secondCity == "Рига")
+            {
+                price += cities[7].transit;
+                if (firstCity == "Париж") price += cities[3].price * 1.09 - cities[3].price;
                 price += cities[3].price * 1.04 - cities[3].price;
-
-            if (secondCity == "Ðèãà")
-            {
-                price += cities[8].transit;
-                if (firstCity == "Ïàðèæ") price += cities[4].price * 1.09 - cities[4].price;
-                price += cities[4].price * 1.04 - cities[4].price;
-                if (firstCity == "Ïàëåðìî") price += cities[8].transit + cities[1].transit;
+                if (firstCity == "Палермо") price += cities[7].transit + cities[0].transit;
             }
 
-            if (secondCity == "Ëîíäîí")
-                price += cities[3].price;
+            if (secondCity == "Лондон")
+                price += cities[2].price;
 
-            if (secondCity == "Ïàëåðìî")
+            if (secondCity == "Палермо")
             {
-                if (firstCity == "Ëîíäîí") price += cities[7].price * 1.07 - cities[7].price;
-                if (firstCity == "Êèøèíåâ") price += cities[7].price * 1.11 - cities[7].price;
+                if (firstCity == "Лондон") price += cities[6].price * 1.07 - cities[6].price;
+                if (firstCity == "Кишинев") price += cities[6].price * 1.11 - cities[6].price;
+                price += cities[6].price * 1.04 - cities[6].price;
+                if (firstCity == "Рига") price += cities[7].transit + cities[0].transit;
+            }
+
+            if (secondCity == "Варшава")
                 price += cities[7].price * 1.04 - cities[7].price;
-                if (firstCity == "Ðèãà") price += cities[8].transit + cities[1].transit;
-            }
 
-            if (secondCity == "Âàðøàâà")
-                price += cities[8].price * 1.04 - cities[8].price;
-
-            if (secondCity == "Êèøèíåâ")
+            if (secondCity == "Кишинев")
                 price += cities[10].transit;
 
-            if (secondCity == "Ìàäðèä")
+            if (secondCity == "Мадрид")
             {
-                price += cities[3].transit;
-                price += cities[10].price * 1.04 - cities[10].price;
+                price += cities[2].transit;
+                price += cities[9].price * 1.04 - cities[9].price;
             }
 
-            if (secondCity == "Áóäàïåøò")
+            if (secondCity == "Будапешт")
                 price += cities[10].price * 1.04 - cities[10].price;
 
             return price;
@@ -168,18 +168,18 @@ namespace Aviaseils
                 if (temp == count)
                 {
                     price += CalcPrice(price, cities, cbMyCity.Text, arrCombo[i]);
-                    if (cbMyCity.Text == "Âàòèêàí") price *= 1.5;
+                    if (cbMyCity.Text == "Ватикан") price *= 1.5;
                 }
             }
 
 
             if (price > budget)
             {
-                MessageBox.Show($"Âàøåãî áþäæåòà íå äîñòàòî÷íî, ñòîèìîñòü ïîåçäêè {price} $");
+                MessageBox.Show($"Вашего бюджета не достаточно, стоимость поездки {price} $");
             }
             else
             {
-                MessageBox.Show($"Ñòîèìîñòü ïîåçäêè: {price}, âàøåãî áþäæåòà äîñòàòî÷íî");
+                MessageBox.Show($"Стоимость поездки: {price}, вашего бюджета достаточно");
             }
 
 

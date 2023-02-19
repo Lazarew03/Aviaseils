@@ -32,7 +32,7 @@ namespace Aviaseils
         static double CalcPrice(double price, City[] cities, string firstCity, string secondCity)
         {
 
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 if (secondCity == cities[i].name)
                 {
